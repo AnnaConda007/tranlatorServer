@@ -49,7 +49,6 @@ app.post('/translate', async (req, res) => {
     }
     const data = responseAPI.data; 
     const translatedWord = data.translations?.[0]?.text || null;
-    console.log(data)
     if (!translatedWord) return;
      res.json({ translatedWord: translatedWord });
   } catch (error) {
