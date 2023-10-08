@@ -1,10 +1,13 @@
 const axios = require('axios');  // Импорт axios
 const dotenv = require('dotenv').config();
 
-const getBookText = async ({res, titleBook, userId}) => {
+const getBookText = async ({ res, titleBook, userId }) => {
   const formattedTitles = `${titleBook}.txt`
   const TOKEN = process.env.YANDEX_QAUTH_TOKEN__DISK;
-  const FOLDER_PATH = `disk:/books/${userId}/${formattedTitles}`
+  const FOLDER_PATH = userId ? `disk:/books/${userId}/${formattedTitles}` : `books/general_books/${formattedTitles}`
+
+
+    ;
   const API_ENDPOINT = 'https://cloud-api.yandex.net/v1/disk/resources/download';
   try {
     const downloadLinkResponse = await axios.get(API_ENDPOINT, {
